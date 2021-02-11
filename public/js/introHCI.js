@@ -18,6 +18,7 @@ function initializePage() {
  * Make an AJAX call to retrieve project details and add it in
  */
 function addProjectDetails(e) {
+	$.get("http://URL", callBackFn)
 	// Prevent following the link
 	e.preventDefault();
 
@@ -26,5 +27,12 @@ function addProjectDetails(e) {
 	// get rid of 'project' from the front of the id 'project3'
 	var idNumber = projectID.substr('project'.length);
 
-	console.log("User clicked on project " + idNumber);
+	$.get("http://localhost:3000/project/" + idNumber, callback);
+
+	console.log("http://localhost:3000/project/" + idNumber);
+}
+
+function callback(result) {
+	console.log(result);
+	$('div.project#' + result.id + '.details').html(result.summary);
 }
